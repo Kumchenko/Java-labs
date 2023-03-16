@@ -6,65 +6,78 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    final static int MAX_RANDOMIZE_VALUE = 20;
+    final static int MIN_RANDOMIZE_VALUE = -20;
+    final static int INPUT_MATRIX_MODE = 1;
+    final static int FINDING_MIN_MODE = 2;
+    final static int FINDING_MAX_MODE = 3;
+    final static int FINDING_ARITHMETIC_MODE = 4;
+    final static int FINDING_GEOMITRIC_MODE = 5;
+    final static int EXIT_MODE = 6;
 
-        int mode = 1;
-        List<List<Integer>> matrix = fillMatrix();
+    public static void main(String[] args) {
+        int mode;
+        List<List<Integer>> matrix = null;
 
         do {
-            Scanner s = new Scanner(System.in);
-            System.out.println("Select Mode:");
-            System.out.println("1. Re-enter matrix");
-            System.out.println("2. MIN element");
-            System.out.println("3. MAX element");
-            System.out.println("4. Average arithmetic value");
-            System.out.println("5. Average geometric value");
-            System.out.println("6. Exit");
-            System.out.println("\nYour choice[1-6]:");
-            mode = s.nextInt();
+            mode = printMenuAndGetMode();
+            if (mode == INPUT_MATRIX_MODE) {
+                matrix = fillMatrix();
+            }
+            if (matrix == null) {
+                System.out.println("Unfortunatley you matrix is empty. Please fill the matrix.");
+                continue;
+            }
             switch (mode) {
-                case 1: {
-                    matrix = fillMatrix();
-                    break;
-                }
-                case 2: {
+                case FINDING_MIN_MODE: {
                     System.out.printf("MIN value of matrix: %d \n", findExtreme(matrix, false));
                     break;
                 }
-                case 3: {
+                case FINDING_MAX_MODE: {
                     System.out.printf("MAX value of matrix: %d \n", findExtreme(matrix, true));
                     break;
                 }
-                case 4: {
+                case FINDING_ARITHMETIC_MODE: {
                     System.out.printf("Arithmetic mean of matrix: %f \n", findArithmeticAverage(matrix));
                     break;
                 }
-                case 5: {
+                case FINDING_GEOMITRIC_MODE: {
                     System.out.printf("Geometric mean of matrix: %f \n", findGeometricAverage(matrix));
                     break;
                 }
-                default: {
-                    mode = 0;
-                }
             }
             System.out.println("\n");
-        } while (mode > 0 && mode < 6);
+        } while (mode != EXIT_MODE);
     }
 
-    static double findArithmeticAverage(List<List<Integer>> matrix) {
+    private static int printMenuAndGetMode() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select Mode:");
+        System.out.println(INPUT_MATRIX_MODE + ". Re-enter matrix");
+        System.out.println(FINDING_MIN_MODE + ". MIN element");
+        System.out.println(FINDING_MAX_MODE + ". MAX element");
+        System.out.println(FINDING_ARITHMETIC_MODE + ". Average arithmetic value");
+        System.out.println(FINDING_GEOMITRIC_MODE + ". Average geometric value");
+        System.out.println(EXIT_MODE + ". Exit");
+        System.out.println("\nYour choice[1-6]:");
+        int mode = scanner.nextInt();
+        return mode;
+    }
+
+    private static double findArithmeticAverage(List<List<Integer>> matrix) {
         double sum = 0;
-        double counter = 0;
+        int counter = 0;
         for (int i = 0; i < matrix.size(); ++i) {
             List<Integer> row = matrix.get(i);
             for (int j = 0; j < row.size(); ++j) {
-                sum += (double) row.get(j);
+                sum += row.get(j);
                 counter++;
             }
         }
-        return sum/counter;
+        return sum / counter;
     }
 
-    static double findGeometricAverage(List<List<Integer>> matrix) {
+    private static double findGeometricAverage(List<List<Integer>> matrix) {
         double multi = 1;
         double counter = 0;
         for (int i = 0; i < matrix.size(); ++i) {
@@ -74,10 +87,11 @@ public class Main {
                 counter++;
             }
         }
-        return Math.exp(Math.log(multi)/counter);
+        return Math.exp(Math.log(multi) / counter);
     }
 
-    static int findExtreme(List<List<Integer>> matrix, Boolean isMaximum) {
+    private static int findExtreme(List<List<Integer>> matrix, Boolean isMaximum) {
+
         List<Integer> extremes = new ArrayList<Integer>();
         for (int i = 0; i < matrix.size(); ++i) {
             if (isMaximum) {
@@ -86,36 +100,35 @@ public class Main {
                 extremes.add(Collections.min(matrix.get(i)));
             }
         }
-
         return isMaximum ? Collections.max(extremes) : Collections.min(extremes);
     }
 
-    static int setParam(String name) {
+    private static int inputValueFromKeyboard(String nameOfInputValue) {
         Scanner scanner = new Scanner(System.in);
         int value;
         do {
-            System.out.printf("Input %s of matrix: ", name);
+            System.out.printf("Input %s of matrix: ", nameOfInputValue);
             value = scanner.nextInt();
             if (value > 0 && value <= 20) {
                 return value;
+
             } else {
                 System.out.print("Value must be greater than 0 and less than 20, please try again!\n\n");
             }
         } while (true);
     }
 
-    static List<List<Integer>> fillMatrix() {
+    private static List<List<Integer>> fillMatrix() {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         Scanner scanner = new Scanner(System.in);
 
-        final int MAX_RAND = 20;
-        final int MIN_RAND = -20;
 
-        int width = setParam("width");
-        int height = setParam("height");
+        int width = inputValueFromKeyboard("width");
+        int height = inputValueFromKeyboard("height");
 
-        System.out.print("Keyboard or Random filling of Matrix?[true|false] ");
-        Boolean isKeyboard = scanner.nextBoolean();
+        System.out.print("Keyboard or Random filling of Matrix?[k|r] ");
+
+        Boolean isKeyboard = scanner.next() == "k";
 
         for (int i = 0; i < height; ++i) {
             List<Integer> col = new ArrayList<Integer>();
@@ -124,7 +137,7 @@ public class Main {
                     System.out.printf("Matrix [%d][%d] = ", i, j);
                     col.add(scanner.nextInt());
                 } else {
-                    int random = (int) (Math.random() * (MAX_RAND - MIN_RAND) + MIN_RAND);
+                    int random = (int) (Math.random() * (MAX_RANDOMIZE_VALUE - MIN_RANDOMIZE_VALUE) + MIN_RANDOMIZE_VALUE);
                     System.out.printf("Matrix [%d][%d] = %d \n", i, j, random);
                     col.add(random);
                 }
