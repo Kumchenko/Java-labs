@@ -1,12 +1,12 @@
 package edu.ntudp.fit.controller;
 
-import edu.ntudp.fit.model.ICreature;
+import edu.ntudp.fit.model.Creature;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class StructureCreator<T, C> implements Buildable<T>{
+public abstract class StructureCreator<T, C> implements Creatable<T> {
 
     public String structureType;
     public String childType;
@@ -16,6 +16,7 @@ public abstract class StructureCreator<T, C> implements Buildable<T>{
         this.childType = childType;
     }
 
+    @Override
     public T create() {
         Scanner scanner = new Scanner(System.in);
 
@@ -23,7 +24,7 @@ public abstract class StructureCreator<T, C> implements Buildable<T>{
         String nameOfStructure = scanner.next();
 
         System.out.printf("Creating the Head of %s %s...\n", structureType, nameOfStructure);
-        ICreature headOfStructure = new HumanCreator().create();
+        Creature headOfStructure = new HumanCreator().create();
 
         System.out.printf("Input the Quantity of %s in the %s: ", childType, structureType);
         Integer childLength = scanner.nextInt();
@@ -32,6 +33,7 @@ public abstract class StructureCreator<T, C> implements Buildable<T>{
         return create(nameOfStructure, headOfStructure, createChildList(childLength, nameOfStructure));
     }
 
-    public abstract T create(String nameOfStructure, ICreature headOfStructure, List<C> childOfStructure);
+    public abstract T create(String nameOfStructure, Creature headOfStructure, List<C> childOfStructure);
+
     public abstract List<C> createChildList(Integer length, String nameOfStructure);
 }

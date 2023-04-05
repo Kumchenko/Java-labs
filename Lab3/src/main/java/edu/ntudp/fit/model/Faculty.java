@@ -8,12 +8,11 @@ public class Faculty extends Structure{
         super(name);
     }
 
-    public Faculty(String name, ICreature head) {
+    public Faculty(String name, Creature head) {
         super(name, head);
     }
 
-    public Faculty(String nameOfStructure, ICreature headOfStructure, List childOfStructure) {
+    public Faculty(String nameOfStructure, Creature headOfStructure, List childOfStructure) {
         super(nameOfStructure, headOfStructure, childOfStructure);
     }
-
 }

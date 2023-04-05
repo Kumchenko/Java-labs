@@ -1,6 +1,8 @@
 package edu.ntudp.fit.model;
 
-public class Human implements ICreature {
+import java.util.Objects;
+
+public class Human implements Creature {
     private String name;
     private String surname;
     private String patronymic;
@@ -19,5 +21,18 @@ public class Human implements ICreature {
         this.surname = surname;
         this.patronymic = patronymic;
         this.sex = sex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return Objects.equals(name, human.name) && Objects.equals(surname, human.surname) && Objects.equals(patronymic, human.patronymic) && sex == human.sex;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, patronymic, sex);
     }
 }

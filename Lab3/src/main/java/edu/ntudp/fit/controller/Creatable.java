@@ -1,5 +1,5 @@
 package edu.ntudp.fit.controller;
 
-public interface Buildable<T> {
+public interface Creatable<T> {
     T create();
 }

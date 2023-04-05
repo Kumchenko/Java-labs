@@ -7,12 +7,11 @@ public class University extends Structure {
         super(name);
     }
 
-    public University(String name, ICreature head) {
+    public University(String name, Creature head) {
         super(name, head);
     }
 
-    public University(String nameOfStructure, ICreature headOfStructure, List childOfStructure) {
+    public University(String nameOfStructure, Creature headOfStructure, List childOfStructure) {
         super(nameOfStructure, headOfStructure, childOfStructure);
     }
-
 }

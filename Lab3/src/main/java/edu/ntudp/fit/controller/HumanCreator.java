@@ -5,12 +5,14 @@ import edu.ntudp.fit.model.Sex;
 
 import java.util.Scanner;
 
-public class HumanCreator implements Buildable<Human> {
+public class HumanCreator implements Creatable<Human> {
 
     final String NAME = "Name";
     final String SURNAME = "Surname";
     final String PATRONYMIC = "Patronymic";
     final String SEX = "Sex";
+
+    @Override
     public Human create() {
         Scanner scanner = new Scanner(System.in);
         String name = getString(scanner, NAME);
@@ -20,6 +22,7 @@ public class HumanCreator implements Buildable<Human> {
 
         return new Human(name, surname, patronymic, sex);
     }
+
     public Human create(String name, String surname, String patronymic, Sex sex) {
         return new Human(name, surname, patronymic, sex);
     }

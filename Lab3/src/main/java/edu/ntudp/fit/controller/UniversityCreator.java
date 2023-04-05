@@ -1,8 +1,7 @@
 package edu.ntudp.fit.controller;
 
-import edu.ntudp.fit.model.Department;
 import edu.ntudp.fit.model.Faculty;
-import edu.ntudp.fit.model.ICreature;
+import edu.ntudp.fit.model.Creature;
 import edu.ntudp.fit.model.University;
 
 import java.util.ArrayList;
@@ -14,9 +13,12 @@ public class UniversityCreator extends StructureCreator<University, Faculty>{
         super("University", "Faculty");
     }
 
-    public University create(String nameOfStructure, ICreature headOfStructure, List<Faculty> childOfStructure) {
+    @Override
+    public University create(String nameOfStructure, Creature headOfStructure, List<Faculty> childOfStructure) {
         return new University(nameOfStructure, headOfStructure, childOfStructure);
     }
+
+    @Override
     public List<Faculty> createChildList(Integer length, String nameOfStructure) {
         List<Faculty> childList = new ArrayList<>(length);
         FacultyCreator facultyCreator = new FacultyCreator();

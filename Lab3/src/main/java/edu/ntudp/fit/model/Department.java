@@ -8,12 +8,11 @@ public class Department extends Structure{
         super(name);
     }
 
-    public Department(String name, ICreature head) {
+    public Department(String name, Creature head) {
         super(name, head);
     }
 
-    public Department(String nameOfStructure, ICreature headOfStructure, List childOfStructure) {
+    public Department(String nameOfStructure, Creature headOfStructure, List childOfStructure) {
         super(nameOfStructure, headOfStructure, childOfStructure);
     }
-
 }

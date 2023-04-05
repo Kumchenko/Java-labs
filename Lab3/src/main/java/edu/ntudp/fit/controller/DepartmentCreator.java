@@ -2,7 +2,7 @@ package edu.ntudp.fit.controller;
 
 import edu.ntudp.fit.model.Department;
 import edu.ntudp.fit.model.Group;
-import edu.ntudp.fit.model.ICreature;
+import edu.ntudp.fit.model.Creature;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,12 @@ public class DepartmentCreator extends StructureCreator<Department, Group> {
         super("Department", "Group");
     }
 
-    public Department create(String nameOfStructure, ICreature headOfStructure, List<Group> childOfStructure) {
+    @Override
+    public Department create(String nameOfStructure, Creature headOfStructure, List<Group> childOfStructure) {
         return new Department(nameOfStructure, headOfStructure, childOfStructure);
     }
+
+    @Override
     public List<Group> createChildList(Integer length, String nameOfStructure) {
         List<Group> childList = new ArrayList<>(length);
         GroupCreator groupCreator = new GroupCreator();

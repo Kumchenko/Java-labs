@@ -7,6 +7,7 @@ import edu.ntudp.fit.model.Student;
 import java.util.Scanner;
 
 public class StudentCreator extends HumanCreator {
+    @Override
     public Student create() {
         Scanner scanner = new Scanner(System.in);
         String name = getString(scanner, NAME);

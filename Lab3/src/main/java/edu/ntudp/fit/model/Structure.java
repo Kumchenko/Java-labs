@@ -1,10 +1,11 @@
 package edu.ntudp.fit.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Structure<T> {
     private String nameOfStructure;
-    private ICreature headOfStructure;
+    private Creature headOfStructure;
     private List<T> childOfStructure;
 
     public String getNameOfStructure() {
@@ -15,11 +16,11 @@ public abstract class Structure<T> {
         this.nameOfStructure = nameOfStructure;
     }
 
-    public ICreature getHeadOfStructure() {
+    public Creature getHeadOfStructure() {
         return headOfStructure;
     }
 
-    public void setHeadOfStructure(ICreature headOfStructure) {
+    public void setHeadOfStructure(Creature headOfStructure) {
         this.headOfStructure = headOfStructure;
     }
 
@@ -35,14 +36,27 @@ public abstract class Structure<T> {
         this.nameOfStructure = name;
     }
 
-    public Structure(String name, ICreature head) {
+    public Structure(String name, Creature head) {
         this.nameOfStructure = name;
         this.headOfStructure = head;
     }
 
-    public Structure(String nameOfStructure, ICreature headOfStructure, List<T> childOfStructure) {
+    public Structure(String nameOfStructure, Creature headOfStructure, List<T> childOfStructure) {
         this.nameOfStructure = nameOfStructure;
         this.headOfStructure = headOfStructure;
         this.childOfStructure = childOfStructure;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Structure<?> structure = (Structure<?>) o;
+        return Objects.equals(nameOfStructure, structure.nameOfStructure) && Objects.equals(headOfStructure, structure.headOfStructure) && Objects.equals(childOfStructure, structure.childOfStructure);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameOfStructure, headOfStructure, childOfStructure);
     }
 }
