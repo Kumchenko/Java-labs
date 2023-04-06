@@ -26,6 +26,9 @@ public class HumanCreator implements Creatable<Human> {
     public Human create(String name, String surname, String patronymic, Sex sex) {
         return new Human(name, surname, patronymic, sex);
     }
+    public Human createRandomly() {
+        return new Human("Ivan", "Ivanov", "Ivanovych", Sex.MALE);
+    }
     protected String getString(Scanner scanner, String nameOfParam) {
         System.out.printf("Input the %s of created Human: ", nameOfParam);
         return scanner.next();

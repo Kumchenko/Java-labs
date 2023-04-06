@@ -1,6 +1,6 @@
 package edu.ntudp.fit.controller;
 
-import edu.ntudp.fit.model.Creature;
+import edu.ntudp.fit.model.Human;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public abstract class StructureCreator<T, C> implements Creatable<T> {
         String nameOfStructure = scanner.next();
 
         System.out.printf("Creating the Head of %s %s...\n", structureType, nameOfStructure);
-        Creature headOfStructure = new HumanCreator().create();
+        Human headOfStructure = new HumanCreator().create();
 
         System.out.printf("Input the Quantity of %s in the %s: ", childType, structureType);
         Integer childLength = scanner.nextInt();
@@ -33,7 +33,11 @@ public abstract class StructureCreator<T, C> implements Creatable<T> {
         return create(nameOfStructure, headOfStructure, createChildList(childLength, nameOfStructure));
     }
 
-    public abstract T create(String nameOfStructure, Creature headOfStructure, List<C> childOfStructure);
+    public abstract T create(String nameOfStructure, Human headOfStructure, List<C> childOfStructure);
+
+    public abstract T createRandomly();
 
     public abstract List<C> createChildList(Integer length, String nameOfStructure);
+
+    public abstract List<C> createChildListRandomly();
 }

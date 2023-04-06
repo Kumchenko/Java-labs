@@ -2,7 +2,7 @@ package edu.ntudp.fit.model;
 
 import java.util.Objects;
 
-public class Human implements Creature {
+public class Human {
     private String name;
     private String surname;
     private String patronymic;
@@ -12,8 +12,7 @@ public class Human implements Creature {
         return true;
     }
 
-    public String toString() {
-        return this.surname + ' ' + this.name + ' ' + this.patronymic + " Sex: " + this.sex;
+    public Human() {
     }
 
     public Human(String name, String surname, String patronymic, Sex sex) {
@@ -21,6 +20,11 @@ public class Human implements Creature {
         this.surname = surname;
         this.patronymic = patronymic;
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return this.surname + ' ' + this.name + ' ' + this.patronymic + " Sex: " + this.sex;
     }
 
     @Override

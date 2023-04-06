@@ -3,9 +3,9 @@ package edu.ntudp.fit.model;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Structure<T> {
+public class Structure<T> {
     private String nameOfStructure;
-    private Creature headOfStructure;
+    private Human headOfStructure;
     private List<T> childOfStructure;
 
     public String getNameOfStructure() {
@@ -16,11 +16,11 @@ public abstract class Structure<T> {
         this.nameOfStructure = nameOfStructure;
     }
 
-    public Creature getHeadOfStructure() {
+    public Human getHeadOfStructure() {
         return headOfStructure;
     }
 
-    public void setHeadOfStructure(Creature headOfStructure) {
+    public void setHeadOfStructure(Human headOfStructure) {
         this.headOfStructure = headOfStructure;
     }
 
@@ -32,16 +32,19 @@ public abstract class Structure<T> {
         this.childOfStructure = childOfStructure;
     }
 
+    public Structure() {
+    }
+
     public Structure(String name) {
         this.nameOfStructure = name;
     }
 
-    public Structure(String name, Creature head) {
+    public Structure(String name, Human head) {
         this.nameOfStructure = name;
         this.headOfStructure = head;
     }
 
-    public Structure(String nameOfStructure, Creature headOfStructure, List<T> childOfStructure) {
+    public Structure(String nameOfStructure, Human headOfStructure, List<T> childOfStructure) {
         this.nameOfStructure = nameOfStructure;
         this.headOfStructure = headOfStructure;
         this.childOfStructure = childOfStructure;

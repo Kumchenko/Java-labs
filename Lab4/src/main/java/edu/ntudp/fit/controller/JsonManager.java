@@ -16,13 +16,14 @@ public class JsonManager<T> {
     }
 
     public void writeToFile(T obj, String filePath) throws IOException {
-        Writer writer = new FileWriter(filePath);
+        FileWriter writer = new FileWriter(filePath);
         this.gson.toJson(obj, writer);
         writer.flush();
         writer.close();
     }
 
     public T readFromFile(String filePath) throws FileNotFoundException {
-        return this.gson.fromJson(new FileReader(filePath), this.type);
+        FileReader reader = new FileReader(filePath);
+        return this.gson.fromJson(reader, this.type);
     }
 }
