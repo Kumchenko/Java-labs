@@ -2,7 +2,7 @@ package edu.ntudp.fit.model;
 
 import java.util.List;
 
-public class University extends Structure {
+public class University extends Structure<Faculty> {
 
     public University() { super(); }
     public University(String name) {

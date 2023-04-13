@@ -1,10 +1,9 @@
 package edu.ntudp.fit.controller;
 
+import edu.ntudp.fit.model.Faculty;
 import edu.ntudp.fit.model.Structure;
 import edu.ntudp.fit.model.University;
 import org.junit.Test;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
@@ -17,7 +16,7 @@ public class JsonManagerTest {
         Structure university = new UniversityCreator().createRandomly();
 
         jsonManager.writeToFile(university, "test.json");
-        Structure readUniversity = (University) jsonManager.readFromFile("test.json");
+        Structure<Faculty> readUniversity = (University) jsonManager.readFromFile("test.json");
 
         assertEquals(university, readUniversity);
     }

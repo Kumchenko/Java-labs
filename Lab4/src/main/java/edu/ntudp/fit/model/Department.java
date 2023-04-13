@@ -2,7 +2,7 @@ package edu.ntudp.fit.model;
 
 import java.util.List;
 
-public class Department extends Structure{
+public class Department extends Structure<Group>{
 
     public Department() { super(); }
     public Department(String name) {
