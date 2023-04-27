@@ -3,10 +3,10 @@ package edu.ntudp.fit.model;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Structure<T> {
+public class Structure implements Entity {
     private String nameOfStructure;
     private Creature headOfStructure;
-    private List<T> childOfStructure;
+    private List<Entity> childOfStructure;
 
     public String getNameOfStructure() {
         return nameOfStructure;
@@ -24,11 +24,11 @@ public abstract class Structure<T> {
         this.headOfStructure = headOfStructure;
     }
 
-    public List<T> getChildOfStructure() {
+    public List<Entity> getChildOfStructure() {
         return childOfStructure;
     }
 
-    public void setChildOfStructure(List<T> childOfStructure) {
+    public void setChildOfStructure(List<Entity> childOfStructure) {
         this.childOfStructure = childOfStructure;
     }
 
@@ -41,7 +41,7 @@ public abstract class Structure<T> {
         this.headOfStructure = head;
     }
 
-    public Structure(String nameOfStructure, Creature headOfStructure, List<T> childOfStructure) {
+    public Structure(String nameOfStructure, Creature headOfStructure, List<Entity> childOfStructure) {
         this.nameOfStructure = nameOfStructure;
         this.headOfStructure = headOfStructure;
         this.childOfStructure = childOfStructure;
@@ -50,8 +50,8 @@ public abstract class Structure<T> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Structure<?> structure = (Structure<?>) o;
+        if (!(o instanceof Structure)) return false;
+        Structure structure = (Structure) o;
         return Objects.equals(nameOfStructure, structure.nameOfStructure) && Objects.equals(headOfStructure, structure.headOfStructure) && Objects.equals(childOfStructure, structure.childOfStructure);
     }
 

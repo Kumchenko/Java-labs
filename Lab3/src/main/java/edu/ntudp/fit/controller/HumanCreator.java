@@ -5,7 +5,7 @@ import edu.ntudp.fit.model.Sex;
 
 import java.util.Scanner;
 
-public class HumanCreator implements Creatable<Human> {
+public class HumanCreator implements Creatable {
 
     final String NAME = "Name";
     final String SURNAME = "Surname";
@@ -25,6 +25,10 @@ public class HumanCreator implements Creatable<Human> {
 
     public Human create(String name, String surname, String patronymic, Sex sex) {
         return new Human(name, surname, patronymic, sex);
+    }
+
+    public Human createRandomly() {
+        return new Human("Ivan", "Ivanov", "Ivanovych", Sex.MALE);
     }
     protected String getString(Scanner scanner, String nameOfParam) {
         System.out.printf("Input the %s of created Human: ", nameOfParam);

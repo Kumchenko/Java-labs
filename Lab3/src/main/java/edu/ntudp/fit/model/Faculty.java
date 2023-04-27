@@ -12,7 +12,7 @@ public class Faculty extends Structure{
         super(name, head);
     }
 
-    public Faculty(String nameOfStructure, Creature headOfStructure, List childOfStructure) {
+    public Faculty(String nameOfStructure, Creature headOfStructure, List<Entity> childOfStructure) {
         super(nameOfStructure, headOfStructure, childOfStructure);
     }
 }

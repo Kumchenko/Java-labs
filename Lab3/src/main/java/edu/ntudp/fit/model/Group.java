@@ -2,7 +2,7 @@ package edu.ntudp.fit.model;
 
 import java.util.List;
 
-public class Group extends Structure<Student> {
+public class Group extends Structure {
 
     public Group(String name) {
         super(name);
@@ -11,7 +11,7 @@ public class Group extends Structure<Student> {
         super(name, head);
     }
 
-    public Group(String nameOfStructure, Creature headOfStructure, List<Student> childOfStructure) {
+    public Group(String nameOfStructure, Creature headOfStructure, List<Entity> childOfStructure) {
         super(nameOfStructure, headOfStructure, childOfStructure);
     }
 }

@@ -17,7 +17,14 @@ public class StudentCreator extends HumanCreator {
 
         return new Student(name, surname, patronymic, sex);
     }
+
+    @Override
     public Student create(String name, String surname, String patronymic, Sex sex) {
         return new Student(name, surname, patronymic, sex);
+    }
+
+    @Override
+    public Student createRandomly() {
+        return new Student("Kyrylo", "Kumchenko", "Volodymyrovych", Sex.MALE);
     }
 }

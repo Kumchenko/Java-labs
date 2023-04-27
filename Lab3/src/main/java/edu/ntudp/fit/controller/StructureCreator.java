@@ -1,12 +1,14 @@
 package edu.ntudp.fit.controller;
 
 import edu.ntudp.fit.model.Creature;
+import edu.ntudp.fit.model.Entity;
+import edu.ntudp.fit.model.Structure;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class StructureCreator<T, C> implements Creatable<T> {
+public abstract class StructureCreator implements Creatable{
 
     public String structureType;
     public String childType;
@@ -17,7 +19,7 @@ public abstract class StructureCreator<T, C> implements Creatable<T> {
     }
 
     @Override
-    public T create() {
+    public Structure create() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.printf("Input the Name of created %s: ", structureType);
@@ -27,13 +29,17 @@ public abstract class StructureCreator<T, C> implements Creatable<T> {
         Creature headOfStructure = new HumanCreator().create();
 
         System.out.printf("Input the Quantity of %s in the %s: ", childType, structureType);
-        Integer childLength = scanner.nextInt();
-        List<C> childOfStructure = new ArrayList<>(childLength);
+        int childLength = scanner.nextInt();
+        List<Entity> childOfStructure = new ArrayList<>(childLength);
 
         return create(nameOfStructure, headOfStructure, createChildList(childLength, nameOfStructure));
     }
 
-    public abstract T create(String nameOfStructure, Creature headOfStructure, List<C> childOfStructure);
+    public abstract Structure create(String nameOfStructure, Creature headOfStructure, List<Entity> childOfStructure);
 
-    public abstract List<C> createChildList(Integer length, String nameOfStructure);
+    public abstract List<Entity> createChildList(Integer length, String nameOfStructure);
+
+    public abstract Structure createRandomly();
+
+    public abstract List<Entity> createChildListRandomly();
 }

@@ -7,10 +7,6 @@ public class Human implements Creature {
     private String surname;
     private String patronymic;
     private Sex sex;
-    public Boolean isAlive() {
-        System.out.printf("I`m %s and I'm alive!!!", this.name);
-        return true;
-    }
 
     public String toString() {
         return this.surname + ' ' + this.name + ' ' + this.patronymic + " Sex: " + this.sex;

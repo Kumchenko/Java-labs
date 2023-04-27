@@ -11,7 +11,7 @@ public class University extends Structure {
         super(name, head);
     }
 
-    public University(String nameOfStructure, Creature headOfStructure, List childOfStructure) {
+    public University(String nameOfStructure, Creature headOfStructure, List<Entity> childOfStructure) {
         super(nameOfStructure, headOfStructure, childOfStructure);
     }
 }
