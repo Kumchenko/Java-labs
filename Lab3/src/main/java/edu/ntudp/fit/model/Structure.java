@@ -3,45 +3,21 @@ package edu.ntudp.fit.model;
 import java.util.List;
 import java.util.Objects;
 
-public class Structure implements Entity {
+public class Structure<C> implements Entity {
     private String nameOfStructure;
-    private Creature headOfStructure;
-    private List<Entity> childOfStructure;
-
-    public String getNameOfStructure() {
-        return nameOfStructure;
-    }
-
-    public void setNameOfStructure(String nameOfStructure) {
-        this.nameOfStructure = nameOfStructure;
-    }
-
-    public Creature getHeadOfStructure() {
-        return headOfStructure;
-    }
-
-    public void setHeadOfStructure(Creature headOfStructure) {
-        this.headOfStructure = headOfStructure;
-    }
-
-    public List<Entity> getChildOfStructure() {
-        return childOfStructure;
-    }
-
-    public void setChildOfStructure(List<Entity> childOfStructure) {
-        this.childOfStructure = childOfStructure;
-    }
+    private Human headOfStructure;
+    private List<C> childOfStructure;
 
     public Structure(String name) {
         this.nameOfStructure = name;
     }
 
-    public Structure(String name, Creature head) {
+    public Structure(String name, Human head) {
         this.nameOfStructure = name;
-        this.headOfStructure = head;
+        this.headOfStructure = (Human) head;
     }
 
-    public Structure(String nameOfStructure, Creature headOfStructure, List<Entity> childOfStructure) {
+    public Structure(String nameOfStructure, Human headOfStructure, List<C> childOfStructure) {
         this.nameOfStructure = nameOfStructure;
         this.headOfStructure = headOfStructure;
         this.childOfStructure = childOfStructure;

@@ -5,23 +5,23 @@ import edu.ntudp.fit.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentCreator extends StructureCreator {
+public class DepartmentCreator extends StructureCreator<Group> {
     public DepartmentCreator() {
         super("Department", "Group");
     }
 
     @Override
-    public Department create(String nameOfStructure, Creature headOfStructure, List<Entity> childOfStructure) {
+    public Department create(String nameOfStructure, Human headOfStructure, List childOfStructure) {
         return new Department(nameOfStructure, headOfStructure, childOfStructure);
     }
 
     @Override
-    public List<Entity> createChildList(Integer length, String nameOfStructure) {
-        List<Entity> childList = new ArrayList<>(length);
-        GroupCreator groupCreator = new GroupCreator();
+    public List<Group> createChildList(Integer length, String nameOfStructure) {
+        List<Group> childList = new ArrayList<>(length);
+        Creatable groupCreator = new GroupCreator();
         for (int i = 0; i < length; i++) {
             System.out.printf("Creating the %s of %s %s...\n", childType, structureType, nameOfStructure);
-            childList.add(groupCreator.create());
+            childList.add((Group) groupCreator.create());
         }
         return childList;
     }
@@ -32,11 +32,11 @@ public class DepartmentCreator extends StructureCreator {
     }
 
     @Override
-    public List<Entity> createChildListRandomly() {
-        List<Entity> childList = new ArrayList<>(2);
+    public List<Group> createChildListRandomly() {
+        List<Group> childList = new ArrayList<>(2);
         Creatable groupCreator = new GroupCreator();
         for (int i = 0; i < 2; i++) {
-            childList.add(groupCreator.createRandomly());
+            childList.add((Group) groupCreator.createRandomly());
         }
         return childList;
     }
