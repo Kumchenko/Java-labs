@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    final static int MAX_RANDOMIZE_VALUE = 20;
-    final static int MIN_RANDOMIZE_VALUE = -20;
-    final static int INPUT_MATRIX_MODE = 1;
-    final static int FINDING_MIN_MODE = 2;
-    final static int FINDING_MAX_MODE = 3;
-    final static int FINDING_ARITHMETIC_MODE = 4;
-    final static int FINDING_GEOMITRIC_MODE = 5;
-    final static int EXIT_MODE = 6;
+    private final static int MAX_RANDOMIZE_VALUE = 20;
+    private final static int MIN_RANDOMIZE_VALUE = -20;
+    private final static int INPUT_MATRIX_MODE = 1;
+    private final static int FINDING_MIN_MODE = 2;
+    private final static int FINDING_MAX_MODE = 3;
+    private final static int FINDING_ARITHMETIC_MODE = 4;
+    private final static int FINDING_GEOMETRIC_MODE = 5;
+    private final static int EXIT_MODE = 6;
 
     public static void main(String[] args) {
         int mode;
@@ -25,7 +25,7 @@ public class Main {
                 matrix = fillMatrix();
             }
             if (matrix == null) {
-                System.out.println("Unfortunatley you matrix is empty. Please fill the matrix.");
+                System.out.println("Unfortunately you matrix is empty. Please fill the matrix.");
                 continue;
             }
             switch (mode) {
@@ -41,7 +41,7 @@ public class Main {
                     System.out.printf("Arithmetic mean of matrix: %f \n", findArithmeticAverage(matrix));
                     break;
                 }
-                case FINDING_GEOMITRIC_MODE: {
+                case FINDING_GEOMETRIC_MODE: {
                     System.out.printf("Geometric mean of matrix: %f \n", findGeometricAverage(matrix));
                     break;
                 }
@@ -57,7 +57,7 @@ public class Main {
         System.out.println(FINDING_MIN_MODE + ". MIN element");
         System.out.println(FINDING_MAX_MODE + ". MAX element");
         System.out.println(FINDING_ARITHMETIC_MODE + ". Average arithmetic value");
-        System.out.println(FINDING_GEOMITRIC_MODE + ". Average geometric value");
+        System.out.println(FINDING_GEOMETRIC_MODE + ". Average geometric value");
         System.out.println(EXIT_MODE + ". Exit");
         System.out.println("\nYour choice[1-6]:");
         int mode = scanner.nextInt();
